@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVERED: Your Dual Life Revealed</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+        
+        :root {
+            --lumon-blue: #2d8cff;
+            --lumon-dark: #1e3a5f;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            color: var(--lumon-dark);
+        }
+        
+        .logo p {
+            font-size: 1rem;
+            color: var(--lumon-blue);
+            margin-top: 10px;
+        }
+        
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .instagram-input {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+        
+        .instagram-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--lumon-blue);
+            border-radius: 0;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+        }
+        
+        .instagram-input input:focus {
+            outline: none;
+            border-color: var(--lumon-dark);
+        }
+        
+        button {
+            background-color: var(--lumon-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: var(--lumon-dark);
+        }
+        
+        .results {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .results h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+            color: var(--lumon-dark);
+        }
+        
+        .persona {
+            margin-bottom: 30px;
+        }
+        
+        .persona h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--lumon-blue);
+        }
+        
+        .persona p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .crt-effect {
+            animation: textShadow 1.6s infinite;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-text {
+            display: inline-block;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes textShadow {
+            0% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            5% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            10% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            15% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            20% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            25% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            30% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            35% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            40% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            45% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            50% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            55% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            60% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            65% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            70% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            75% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            80% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            85% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            90% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            95% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+            100% {
+                text-shadow: 0.4px 0 1px rgba(0,30,255,0.5), -0.4px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        @media (max-width: 600px) {
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .instagram-input {
+                flex-direction: column;
+            }
+            
+            .instagram-input input {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1 class="crt-effect">SEVERED</h1>
+            <p>YOUR DUAL LIFE REVEALED</p>
+        </div>
+        
+        <div class="input-section">
+            <p>Enter your Instagram username to discover your outie and innie.</p>
+            <div class="instagram-input">
+                <input type="text" id="instagram-username" placeholder="@yourinstagram">
+                <button id="analyze-btn">ANALYZE</button>
+            </div>
+            <p class="disclaimer">* No actual Instagram data is processed. This is a demonstration.</p>
+        </div>
+        
+        <div class="loading">
+            <div class="loading-text">PROCESSING SEVERANCE...</div>
+        </div>
+        
+        <div class="results" id="results">
+            <h2>SEVERANCE COMPLETE</h2>
+            
+            <div class="persona">
+                <h3>YOUR OUTIE:</h3>
+                <p id="outie-description"></p>
+            </div>
+            
+            <div class="persona">
+                <h3>YOUR INNIE:</h3>
+                <p id="innie-description"></p>
+            </div>
+            
+            <button id="try-again-btn">TRY AGAIN</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>This is fan art inspired by the Apple TV+ show "Severance".</p>
+        <p>Not affiliated with Apple TV+ or the creators of Severance.</p>
+    </div>
+
+    <script>
+        const outieDescriptions = [
+            "Your outie is splendid and can swim gracefully in turbulent waters. They maintain a journal documenting cloud formations and have a peculiar fondness for collecting vintage doorknobs.",
+            "Your outie regularly attends poetry readings but never shares their own work. They have mastered the art of parallel parking and can identify most bird calls within a five-mile radius of their home.",
+            "Your outie cultivates rare succulents and names each one after forgotten literary characters. They frequently lose track of time while researching obscure historical events that changed the course of modern architecture.",
+            "Your outie prepares elaborate breakfasts even when dining alone. They possess an uncanny ability to find four-leaf clovers and have never once forgotten to return a library book.",
+            "Your outie speaks confidently to strangers but whispers secrets only to house plants. They collect vintage maps of places they've never visited and can recite pi to forty-two decimal places.",
+            "Your outie approaches crossword puzzles with military precision and refuses to wear matching socks. They've perfected a recipe for lavender shortbread that they only bake during electrical storms.",
+            "Your outie takes the scenic route everywhere, even when late. They maintain detailed spreadsheets tracking the migration patterns of monarch butterflies and have a collection of antique hourglasses that they refuse to turn over.",
+            "Your outie writes letters to their future self and buries them under moonlight. They can identify the origin of olive oils through taste alone and have never used an umbrella despite living in a rainy climate."
+        ];
+
+        const innieDescriptions = [
+            "Your innie meticulously arranges pencils by length and graphite density. They find profound satisfaction in completing the quarterly reports ahead of schedule and have developed an elaborate system for categorizing the break room mugs.",
+            "Your innie silently counts the ceiling tiles during meetings and has memorized the exact number of steps between their desk and the water cooler. They collect paper clips of various sizes and shapes, keeping them in perfectly aligned rows in their desk drawer.",
+            "Your innie takes precisely timed coffee breaks at 10:17 AM and 2:44 PM daily. They've developed a secret language of subtle nods and gestures to communicate with the office plant and are surprisingly adept at waffle making in the department kitchen.",
+            "Your innie maintains an internal map of every squeaky floorboard in the office and avoids them with practiced precision. They've developed theories about what lies beyond the elevator doors on floor G and have never once taken a sick day.",
+            "Your innie has named each computer in the department after extinct species and whispers encouragement to them during system updates. They maintain immaculate spreadsheets tracking the frequency of certain words used by management.",
+            "Your innie can distinguish between fifty-seven different shades of beige and applies this talent to sorting files. They've developed a complex rating system for the quality of elevator music and maintain detailed records of their findings.",
+            "Your innie has perfected the art of looking busy while contemplating the philosophical implications of datafication. They've created an elaborate backstory for every figure in the corporate artwork and secretly rearrange office supplies by 3mm each night.",
+            "Your innie has calculated the exact duration required to microwave various foods to optimal temperature and maintains this information in color-coded notes. They can predict which printer will malfunction next and have a mysterious ability to find lost staplers."
+        ];
+
+        document.getElementById('analyze-btn').addEventListener('click', function() {
+            const username = document.getElementById('instagram-username').value.trim();
+            
+            if (!username) {
+                alert('Please enter an Instagram username');
+                return;
+            }
+            
+            // Show loading animation
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.input-section').style.display = 'none';
+            
+            // Simulate processing time
+            setTimeout(function() {
+                // Hide loading and show results
+                document.querySelector('.loading').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+                
+                // Randomly select descriptions
+                const outieIndex = Math.floor(Math.random() * outieDescriptions.length);
+                let innieIndex = Math.floor(Math.random() * innieDescriptions.length);
+                
+                // Make sure we don't get the same index for both
+                if (innieIndex === outieIndex) {
+                    innieIndex = (innieIndex + 1) % innieDescriptions.length;
+                }
+                
+                // Set descriptions
+                document.getElementById('outie-description').textContent = outieDescriptions[outieIndex];
+                document.getElementById('innie-description').textContent = innieDescriptions[innieIndex];
+                
+            }, 3000); // 3 second delay to simulate processing
+        });
+
+        document.getElementById('try-again-btn').addEventListener('click', function() {
+            // Reset the form
+            document.getElementById('instagram-username').value = '';
+            document.getElementById('results').style.display = 'none';
+            document.querySelector('.input-section').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
